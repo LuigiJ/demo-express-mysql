@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>demo about express and mysql</title>
+  <script src="./js/jquery.1.11.3.min.js"></script>
+</head>
+<body>
+  <h1>welcome my index pages</h1>
+  <p>
+    test mysql
+  </p>
+  <form>
+    <!--<input type="text" id="id">-->
+    <input type="text" id="name">
+  </form>
+  <button id="add">添加</button>
+  <button id="search">查询</button>
+  <p class="result"></p>
+  <script>
+    $(function(){
+      var $add = $('#add');
+      var $search = $('#search');
+      var $result = $('.result');
+      // var $id = $('#id');
+      var $name = $('#name');
+      $add.click(function(){
+        // var v1 = $id.val().trim();
+        var v2 = $name.val().trim();
+        if (v2 !== '') {
+          $.ajax({
+            url: 'http://127.0.0.1:3000/db/add',
+            type: 'post',
+            dataType: 'json', 
+            data: {
+              name: v2
+            },
+            success: function (data) {
+              if (data.msg !== undefined) {
+                $result.text(data.msg);
+              }
+            },
+            error: function (err) {
+              console.log(err);
+              $result.text('发生错误');
+            }
+          });
+        }
+      });
+      $search.click(function(){
+        $.ajax({
+          url: 'http://127.0.0.1:3000/db/search',
+          type: 'get',
+          dataType: 'json', 
+          success: function (data) {
+            var res = '';
+            for (var i = 0; i < data.length; i++) {
+              if(i === 0) res += data[i].name
+              else res += ',' + data[i].name
+            };
+            $result.text(res);
+          },
+          error: function (err) {
+            console.log(err);
+            $result.text('发生错误');
+          }
+        });
+      });
+    })
+  </script>
+</body>
+</html>

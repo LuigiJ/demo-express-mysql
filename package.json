@@ -1,0 +1,25 @@
+{
+  "name": "demo-express-mysql",
+  "version": "1.0.0",
+  "description": "a demo about express and mysql",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LuigiJ/demo-express-mysql.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LuigiJ/demo-express-mysql/issues"
+  },
+  "homepage": "https://github.com/LuigiJ/demo-express-mysql#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "express-myconnection": "^1.0.4",
+    "mysql": "^2.13.0"
+  }
+}
